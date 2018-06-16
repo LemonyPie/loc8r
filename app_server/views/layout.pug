@@ -4,11 +4,28 @@ html
     meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title= title
-    link(rel="shortcut icon", href="favicon.png", type="image/png")
-    link(rel="stylesheet", href="bootstrap/css/bootstrap.min.css")
+    link(rel="shortcut icon", href="/favicon.png", type="image/png")
+    link(rel="stylesheet", href="/bootstrap/css/bootstrap.min.css")
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
-    script(src="javascripts/jquery-3.3.1.slim.min.js")
-    script(src="javascripts/popper.min.js")
-    script(src="bootstrap/js/bootstrap.min.js")
+    nav.navbar.fixed-top.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand(href='/')
+        img.d-inline-block.align-top(src='/favicon.png', width='20', height='20', alt='')
+        |  Loc8r
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link(href='/about/')
+              | About 
+              span.sr-only (current)
+    .container
+      block content
+    footer
+      .row
+        .col-12
+          small &copy; Artemee Senin
+    script(src="/javascripts/jquery-3.3.1.slim.min.js")
+    script(src="/javascripts/popper.min.js")
+    script(src="/bootstrap/js/bootstrap.min.js")
