@@ -1,0 +1,7 @@
+mixin rating(stars)
+  - var maxStars = 5
+  
+  - for(var i = 1; i <= stars; i++)
+    i.fas.fa-star
+  - for(var i = stars; i < maxStars; i++)
+    i.far.fa-star

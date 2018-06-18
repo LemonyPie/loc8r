@@ -1,11 +1,8 @@
+include /mixins/rating
 h4
   a.mr-2(href="/location/")= location.name
   small
-    - for(var i = 1; i <= location.rating; i++)
-      i.fas.fa-star
-    - var maxStars = 5
-    - for(var i = location.rating; i < maxStars; i++)
-      i.far.fa-star
+    +rating(location.rating)
   span.badge.float-right.badge-info= location.distance
 p.address= location.address
 p
