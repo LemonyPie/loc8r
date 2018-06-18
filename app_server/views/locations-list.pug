@@ -1,20 +1,17 @@
 extends layout
 
 block content
-  #banner.page-header
+  #banner.page-header1
     .row
       .col-12.col-lg-6
-        h1 Loc8r
-        p.lead Find places to work with wi-fi near you!
+        h1= pageHeader.title
+        p.lead= pageHeader.strapline
   .row
     .col-12.col-lg-8
       h3 Let's visit one from this list?
       .row.list-group
-        .col-12.list-group-item
-          include includes/locations-list-group-item
-        .col-12.list-group-item
-          include includes/locations-list-group-item
-        .col-12.list-group-item
-          include includes/locations-list-group-item
+        each location in locations
+          .col-12.list-group-item
+            include includes/locations-list-group-item
     .col-12.col-lg-4
-      p.lead Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you're looking for
+      p.lead Loc8r helps you find places to work when out and about. Perhaps with coffee, cake or a pint? Let Loc8r help you find the place you're looking for.
