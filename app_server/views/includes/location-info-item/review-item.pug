@@ -1,12 +1,10 @@
+include /mixins/rating
+
 .review.list-group-item.list-group-item-action.flex-column-align-items-start
   .d-flex.w-100.justify-content-between
-    h5.mb-1 Simon Holmes
+    h5.mb-1= review.author
     small.rating
-      i.fas.fa-star
-      i.fas.fa-star
-      i.fas.fa-star
-      i.fas.fa-star
-      i.fas.fa-star
-  p.mb-1 Such a nice place. Good enough and comfortable for working.
-  small 16 July 2013 
+      +rating(review.rating)
+  p.mb-1 !{review.reviewText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br/>')}
+  small= review.timestamp
   

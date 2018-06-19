@@ -29,8 +29,57 @@ module.exports.homeList = function(req, res){
   });
 }
 module.exports.locationInfo = function(req, res){
-  res.render('location-info', { title: 'Location Info' });
+  res.render('location-info', {
+    title: 'Timespace',
+    pageHeader: {
+        title: 'Timespace'
+    },
+    sidebar: {
+        context: 'is on Loc8r because it has accessible wifi and space to sit down with your laptop and get some work done.',
+        callToAction: 'If you\'ve been and you like it - or if you don\'t - please leave a review to help other people just like you.'
+    },
+    location: {
+        name: 'Timespace',
+        address: '125 Utrecht Street, Reading, RG6 1PS',
+        rating: 4,
+        facilities: ['Hot drinks', 'Food', 'Premium wi-fi', 'Free snacks'],
+        coords: {
+            lat: 51.455041,
+            lng: -0.9690884
+        },
+        openingTimes: [{
+            days: 'Monday - Friday',
+            opening: '7:00am',
+            closing: '7:00pm',
+            closed: false
+        }, {
+            days: 'Saturday',
+            opening: '8:00am',
+            closing: '5:00pm',
+            closed: false
+        }, {
+            days: 'Sunday',
+            closed: true
+        }],
+        reviews: [{
+            author: 'Simon Holmes',
+            rating: 5,
+            timestamp: '16 July 2018',
+            reviewText: 'What a great place. I can\'t say enough good things about it.'
+        }, {
+            author: 'Charlie Chaplin',
+            rating: 3,
+            timestamp: '16 June 2013',
+            reviewText: 'It was okay. Coffee wasn\'t great, but the wifi was fast.'
+        }]
+    }
+  });
 }
 module.exports.addReview = function(req, res){
-  res.render('location-review-form', { title: 'Add review' });
+  res.render('location-review-form', {
+    title: 'Review «Timespace» on Loc8r',
+    pageHeader: {
+        title: 'Review «Timespace»'
+    }
+  });
 }

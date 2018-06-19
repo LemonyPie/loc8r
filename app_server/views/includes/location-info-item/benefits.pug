@@ -1,27 +1,21 @@
+include /mixins/rating
 p.rating
-  i.fas.fa-star
-  i.fas.fa-star
-  i.fas.fa-star
-  i.far.fa-star
-  i.far.fa-star
-p.address 125 High Street, Reading, RG6 1PS
+  +rating(location.rating)
+p.address= location.address
 .card.mb-2
   .card-header Opening hours
-  ul.list-group.list-group-flush    
-    li.list-group-item Monday - Friday : 7:00am - 7:00pm
-    li.list-group-item Saturday : 8:00am - 5:00pm
-    li.list-group-item Sunday : closed
+  ul.list-group.list-group-flush
+    each time in location.openingTimes
+      li.list-group-item
+        | #{time.days} 
+        if time.closed
+          | closed
+        else
+          | #{time.opening} - #{time.closing}
 .card.mb-2
   .card-header Facilities
   .card-body
-    span.badge.badge-primary.mr-2.mb-1
-      i.fas.fa-check.mr-1
-      | Hot drinks
-    span.badge.badge-primary.mr-2.mb-1
-      i.fas.fa-check.mr-1
-      | Food
-    span.badge.badge-primary.mr-2.mb-1
-      i.fas.fa-check.mr-1
-      | Premium Wi-Fi
-
-
+    each facility in location.facilities
+      span.badge.badge-primary.mr-2.mb-1
+        i.fas.fa-check.mr-1
+        | #{facility}
