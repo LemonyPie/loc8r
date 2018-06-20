@@ -1,17 +1,23 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const fs = require('fs');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./app_server/routes/index');
-var usersRouter = require('./app_server/routes/users');
+/* Mongoose cinnect */
+global.appRoot = path.resolve(__dirname);
+require('./app_server/models/db');
 
-var app = express();
+const indexRouter = require('./app_server/routes/index');
+const usersRouter = require('./app_server/routes/users');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
-app.locals.basedir = path.join(__dirname, 'app_server', 'views')
+app.locals.basedir = path.join(__dirname, 'app_server', 'views');
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
