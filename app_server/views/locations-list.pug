@@ -11,7 +11,7 @@ block content
       h3 Let's visit one from this list?
       .row.list-group
         each location in locations
-          .col-12.list-group-item
+          a.col-12.list-group-item.list-group-item-action(href="/location")
             include /includes/locations-list-group-item
     .col-12.col-lg-4
       p.lead= sidebar
