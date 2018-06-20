@@ -4,7 +4,7 @@ h4
   a.mr-2(href="/location/")= location.name
   small
     +rating(location.rating)
-  span.badge.float-right.badge-info= location.distance
+  span.badge.float-right.badge-info.text-light= location.distance
 p.address= location.address
 p
   each facility in location.facilities
