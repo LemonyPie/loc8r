@@ -1,4 +1,5 @@
 include /mixins/rating
+include /mixins/facility
 p.rating
   +rating(location.rating)
 p.address= location.address
@@ -16,6 +17,4 @@ p.address= location.address
   .card-header Facilities
   .card-body
     each facility in location.facilities
-      span.badge.badge-primary.mr-2.mb-1
-        i.fas.fa-check.mr-1
-        | #{facility}
+      +facility(facility, true)

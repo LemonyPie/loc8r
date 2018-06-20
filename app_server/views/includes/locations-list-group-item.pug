@@ -1,4 +1,5 @@
 include /mixins/rating
+include /mixins/facility
 h4
   a.mr-2(href="/location/")= location.name
   small
@@ -7,4 +8,4 @@ h4
 p.address= location.address
 p
   each facility in location.facilities
-    span.badge.badge-primary.mr-1= facility
+    +facility(facility, false)
