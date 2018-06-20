@@ -1,7 +1,7 @@
 include /mixins/rating
 include /mixins/facility
 h4
-  a.mr-2(href="/location/")= location.name
+  a.card-link.mr-2(href="/location/")= location.name
   small
     +rating(location.rating)
   span.badge.float-right.badge-info.text-light= location.distance
