@@ -6,8 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 
-/* Mongoose cinnect */
-global.appRoot = path.resolve(__dirname);
 require('./app_server/models/db');
 
 const indexRouter = require('./app_server/routes/index');
@@ -17,6 +15,7 @@ const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
+global.appRoot = path.resolve(__dirname);
 app.locals.basedir = path.join(__dirname, 'app_server', 'views');
 app.set('view engine', 'pug');
 
