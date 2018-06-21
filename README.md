@@ -32,6 +32,10 @@ To restore that dump into db use `mongorestore -h ds161520.mlab.com:61520 -d loc
 
 To connect to remote db use `mongo ds161520.mlab.com:61520/loc8r-db -u <username> -p <password>`
 
+#### DB for dev and prod
+
+Set different dbs for dev and prod using NODE_ENV `heroku config:set NODE_ENV=production` and check of it's ok `heroku config:get NODE_ENV`
+
 ## Todos
 
 - [ ] In models/location change time format from String to Number of seconds from midnight
