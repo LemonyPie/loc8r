@@ -34,7 +34,7 @@ To connect to remote db use `mongo ds161520.mlab.com:61520/loc8r-db -u <username
 
 #### DB for dev and prod
 
-Set different dbs for dev and prod using NODE_ENV `heroku config:set NODE_ENV=production` and check of it's ok `heroku config:get NODE_ENV`
+Set different dbs for dev and prod using NODE_ENV `heroku config:set NODE_ENV=production` and check of it's ok `heroku config:ggaet NODE_ENV`
 
 ## Todos
 
