@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
-let dbURI = 'mongodb://localhost/Loc8r';
+let dbURI = 'mongodb://localhost/loc8r-db';
+if(process.env.NODE_ENV === 'production'){
+  dbURI = process.env.MONGOLAB_URI;
+}
 
 mongoose.connection.on('connected', function(){
   console.log('Mongoose connected to ' + dbURI);
@@ -34,5 +37,7 @@ process.on('SIGTERM', function(){
     process.exit(0);
   })
 })
+
+mongoose.connect(dbURI);
 
 require('./locations')
