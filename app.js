@@ -14,10 +14,16 @@ const usersRouter = require('./app_server/routes/users');
 
 const app = express();
 
-// view engine setup
+/* set globals */
+global.appRoot = path.resolve(__dirname); // root of project
+global.serverRoot = path.resolve(__dirname, 'app_server'); // root of server
+global.apiRoot = path.resolve(__dirname, 'app_api'); // root of api
+
+/* set locals */
+app.locals.basedir = path.join(__dirname, 'app_server', 'views'); // basdeir for pug paths
+
+/* view engine setup */
 app.set('views', path.join(__dirname, 'app_server', 'views'));
-global.appRoot = path.resolve(__dirname);
-app.locals.basedir = path.join(__dirname, 'app_server', 'views');
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
