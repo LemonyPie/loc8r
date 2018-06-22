@@ -14,7 +14,10 @@ To start mongodb execute `sudo mongod --fork --dbpath /var/lib/mongodb  --logpat
 
 To manually insert new document of place `db.locations.save({name: 'Timespace', address: '125 High Street, Reading RG6 1Ps', rating: 5, facilities: ['Hot drinks', 'Food', 'Coworking zone', 'Regular meetups', 'Lections'], coords: [-0.9690884, 51.455041], openingTimes: [{days: 'Monday - Friday', opening: '7:00am', closing: '10:00pm', closed: false},{ days: 'Saturday', opening: '8:00am', closing: '7:00pm', closed: false}, {days: 'Sunday', closed: true}]})`
 
-To add new review `db.locations.update({name: 'Timespace'}, {$push: { reviews: { author: 'Jack Rassel', id: ObjectId(), rating: 5, timestamp: new Date("Jul 15, 2018"), reviewText: "What a great place. I can't say enough good things about it."}}})`
+To add new review `db.locations.update({name: 'Timespace'}, {$push: { reviews: { author: 'Jack Rassel', _id: ObjectId(), rating: 5, timestamp: new Date("Jul 15, 2018"), reviewText: "What a great place. I can't say enough good things about it."}}})`
+
+To remove a review `db.locations.update({name: "Timespace"}, {$pull: {reviews: {_id: ObjectId("5b2c92ed6ec02f4f7d1a9212")}}})`
+To remove all author's reviews `db.locations.update({name: "Timespace"}, {$pull: {reviews: {author: "Jack Rassel"}}}, {multi: true})`
 
 #### Heroku config
 
