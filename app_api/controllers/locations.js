@@ -13,7 +13,25 @@ module.exports.locationsCreate = function(req, res){
   sendJsonResponse(res, 200, { "status" : "success" });
 }
 module.exports.locationsReadOne = function(req, res){
-  sendJsonResponse(res, 200, { "status" : "success" });
+  if(req.params && req.params.locationid){
+    Loc
+      .findById(req.params.locationid)
+      .exec(function(err, location){
+        if(!location){
+          sendJsonResponse(res, 404, {
+            "message": "locationid not found"
+          })
+        } else if(err){
+          sendJsonResponse(res, 404, err);
+        } else {
+          sendJsonResponse(res, 200, location);
+        }
+      })
+  } else {
+    sendJsonResponse(res, 404, {
+      "message": "No locationid in params"
+    })
+  } 
 }
 module.exports.locationsUpdateOne = function(req, res){
   sendJsonResponse(res, 200, { "status" : "success" });
