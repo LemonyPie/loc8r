@@ -31,7 +31,7 @@ To get that URI use ```heroku config:get MONGOLAB_URI`
 
 To create ddb dump create folder `mkdir -p ~/tmp/mongodump` then start db and `mongodump -h localhost:27017 -d loc8r-db -o ~/tmp/mongodump`
 
-To restore that dump into db use `mongorestore -h ds161520.mlab.com:61520 -d loc8r-db -u <user> -p <password> ~/tmp/mongodump`
+To restore that dump into db use `mongorestore -h ds161520.mlab.com:61520 -d loc8r-db -u <user> -p <password> mongodump/loc8r-db`
 
 To connect to remote db use `mongo ds161520.mlab.com:61520/loc8r-db -u <username> -p <password>`
 
