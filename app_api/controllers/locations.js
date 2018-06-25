@@ -1,12 +1,40 @@
 const mongoose = require('mongoose');
 const Loc = mongoose.model('Location');
 
+const theEarth = (function(){
+  const EARTH_RADIUS = 6371; // km
+  const getDistanceFromRads = function(rads){
+    return parseFloat(rads * EARTH_RADIUS);
+  }
+
+  const getRadsFromDistance = function(distance){
+    return parseFloat(distance / EARTH_RADIUS);
+  }
+
+  return {
+    getDistanceFromRads: getDistanceFromRads,
+    getRadsFromDistance: getRadsFromDistance
+  };
+})
+
 const sendJsonResponse = function(res, status, content){
   res.status(status);
   res.json(content);
 }
 
 module.exports.locationsListByDistance = function(req, res){
+  const lng = parseFloat(req.query.lng);
+  const lat = parseFloat(req.query.lng);
+  const point = {
+    type: "Point",
+    coordinates: [lng, lat] 
+  };
+  const geoOptions = {
+    spherical: true,
+    maxDistance: theEarth.getRadsFromDistance(20),
+    num: 10
+  }
+  Loc.geoNear(point, geoOptions, cb);
   sendJsonResponse(res, 200, { "status" : "success" });
 }
 module.exports.locationsCreate = function(req, res){
