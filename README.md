@@ -12,7 +12,7 @@ Getting MEAN project "loc8r"
 
 To start mongodb execute `sudo mongod --fork --dbpath /var/lib/mongodb  --logpath /var/lib/mongodb/mongodb.log`
 
-To manually insert new document of place `db.locations.save({name: 'Timespace', address: '125 High Street, Reading RG6 1Ps', rating: 5, facilities: ['Hot drinks', 'Food', 'Coworking zone', 'Regular meetups', 'Lections'], coords: [-0.9690884, 51.455041], openingTimes: [{days: 'Monday - Friday', opening: '7:00am', closing: '10:00pm', closed: false},{ days: 'Saturday', opening: '8:00am', closing: '7:00pm', closed: false}, {days: 'Sunday', closed: true}]})`
+To manually insert new document of place `db.locations.save({name: 'Baker\'s', address: '21 Down Street', rating: 4, facilities: ['Hot drinks', 'Food'], coords: [-0.8992033, 51.4379902], openingTimes: [{days: 'Monday - Friday', opening: '9:00am', closing: '11:00pm', closed: false},{ days: 'Saturday', opening: '8:00am', closing: '7:00pm', closed: false}, {days: 'Sunday', closed: true}]})`
 
 To add new review `db.locations.update({name: 'Timespace'}, {$push: { reviews: { author: 'Jack Rassel', _id: ObjectId(), rating: 5, timestamp: new Date("Jul 15, 2018"), reviewText: "What a great place. I can't say enough good things about it."}}})`
 
@@ -29,7 +29,7 @@ To get that URI use ```heroku config:get MONGOLAB_URI`
 
 ##### DB dump
 
-To create ddb dump create folder `mkdir -p ~/tmp/mongodump``` then start db and ```mongodump -h localhost:27017 -d loc8r-db -o ~/tmp/mongodump`
+To create ddb dump create folder `mkdir -p ~/tmp/mongodump` then start db and `mongodump -h localhost:27017 -d loc8r-db -o ~/tmp/mongodump`
 
 To restore that dump into db use `mongorestore -h ds161520.mlab.com:61520 -d loc8r-db -u <user> -p <password> ~/tmp/mongodump`
 
