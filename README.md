@@ -42,3 +42,4 @@ Set different dbs for dev and prod using NODE_ENV `heroku config:set NODE_ENV=pr
 ## Todos
 
 - [ ] In models/location change time format from String to Number of seconds from midnight
+- [ ] In locations.js get maxDistance from address (book page 236)
