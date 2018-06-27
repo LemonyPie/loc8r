@@ -15,7 +15,7 @@ const theEarth = (function(){
     getDistanceFromRads: getDistanceFromRads,
     getRadsFromDistance: getRadsFromDistance
   };
-})
+})();
 
 const sendJsonResponse = function(res, status, content){
   res.status(status);
