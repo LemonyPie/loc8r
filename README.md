@@ -10,7 +10,10 @@ Getting MEAN project "loc8r"
 
 #### Mongo Shell
 
-To start mongodb execute `sudo mongod --fork --dbpath /var/lib/mongodb  --logpath /var/lib/mongodb/mongodb.log`
+To start mongodb execute
+
+* Linux: `sudo mongod --fork --dbpath /var/lib/mongodb  --logpath /var/lib/mongodb/mongodb.log`
+* MacOS: `sudo mongod --fork --dbpath /usr/local/var/mongodb --logpath /usr/local/var/log/mongodb/mongo.log`
 
 To manually insert new document of place `db.locations.save({name: 'Baker\'s', address: '21 Down Street', rating: 4, facilities: ['Hot drinks', 'Food'], coords: [-0.8992033, 51.4379902], openingTimes: [{days: 'Monday - Friday', opening: '9:00am', closing: '11:00pm', closed: false},{ days: 'Saturday', opening: '8:00am', closing: '7:00pm', closed: false}, {days: 'Sunday', closed: true}]})`
 
