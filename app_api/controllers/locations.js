@@ -15,7 +15,7 @@ const theEarth = (function(){
     getDistanceFromRads: getDistanceFromRads,
     getRadsFromDistance: getRadsFromDistance
   };
-})
+})();
 
 const sendJsonResponse = function(res, status, content){
   res.status(status);
@@ -34,20 +34,20 @@ module.exports.locationsListByDistance = function(req, res){
     maxDistance: theEarth.getRadsFromDistance(20),
     num: 10
   }
-  Loc.geoNear(point, geoOptions, (err, results, stats) => {
+  Loc.geoNear(point, geoOptions, (err, result, stats) => {
     let locations = [];
     results.forEach((doc)=>{
       locations.push({
         distance: theEarth.getDistanceFromRads(doc.dis),
-        name: doc.obj.address,
+        name: doc.obj.name,
+        address: doc.obj.address,
         rating: doc.obj.rating,
-        facilities: doc.obj.facilities,
+        facilities: doc.obj.facitilies,
         _id: doc.obj._id
-      });
-    });
-    sendJsonResponse(res, 200, locations);
-  });
-  sendJsonResponse(res, 200, { "status" : "success" });
+      })
+    })
+    sendJsonResponse(res, 200, { "status" : "success" });
+  });  
 }
 module.exports.locationsCreate = function(req, res){
   sendJsonResponse(res, 200, { "status" : "success" });
