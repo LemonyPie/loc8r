@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npx nodemon ./bin/www localhost 3000",
-    "debug": "npx nodemon --inspect ./bin/www localhost 3000"
+    "test": "npx nodemon --inspect ./bin/www localhost 3000"
   },
   "engines": {
     "node": "~10.4.1",
