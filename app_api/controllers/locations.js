@@ -34,8 +34,20 @@ module.exports.locationsListByDistance = function(req, res){
     maxDistance: theEarth.getRadsFromDistance(20),
     num: 10
   }
-  Loc.geoNear(point, geoOptions, cb);
-  sendJsonResponse(res, 200, { "status" : "success" });
+  Loc.geoNear(point, geoOptions, (err, result, stats) => {
+    let locations = [];
+    results.forEach((doc)=>{
+      locations.push({
+        distance: theEarth.getDistanceFromRads(doc.dis),
+        name: doc.obj.name,
+        address: doc.obj.address,
+        rating: doc.obj.rating,
+        facilities: doc.obj.facitilies,
+        _id: doc.obj._id
+      })
+    })
+    sendJsonResponse(res, 200, { "status" : "success" });
+  });  
 }
 module.exports.locationsCreate = function(req, res){
   sendJsonResponse(res, 200, { "status" : "success" });
