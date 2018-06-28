@@ -34,6 +34,17 @@ const reviewSchema = new mongoose.Schema({
   }
 });
 
+const geoSchema = new mongoose.Schema({
+  type: {
+    type: String,
+    default: "Point"
+  },
+  coordinates: {
+    type: [Number],
+    index: "2dsphere"
+  }
+});
+
 const locationSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -47,10 +58,7 @@ const locationSchema = new mongoose.Schema({
     max: 5
   },
   facilities: [String],
-  coords: {
-    type: [Number],
-    index: '2dsphere'
-  },
+  coords: geoSchema,
   openingTimes: [openingTimeSchema],
   reviews: [reviewSchema]
 });

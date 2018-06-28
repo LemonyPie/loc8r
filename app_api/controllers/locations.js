@@ -34,10 +34,22 @@ const locationsListByDistance = function(req, res){
     maxDistance: maxDistance,
     num: 10
   }
-  Loc.geoNear(point, geoOptions, (err, results, stats) => {
-    const locations = _buildLocationList(req, res, results, stats);
-    sendJsonResponse(res, 200, locations);
-  });  
+  Loc
+    .aggregate()
+    .near({
+      geoNear: "Location",
+      near: {
+        type: "Point",
+        coordinates: [parseFloat(req.query.lng), parseFloat(req.query.lat)]
+      },
+      maxDistance: maxDistance,
+      spherical: true,
+      distanceField: "coords"
+    })
+    .then((locations)=>{
+      sendJsonResponse(res, 200, locations);
+    })
+    .catch((err)=>{console.log(err);})
 }
 const locationsCreate = function(req, res){
   sendJsonResponse(res, 200, { "status" : "success" });
