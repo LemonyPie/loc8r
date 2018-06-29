@@ -23,7 +23,7 @@ To manually insert new document of place
 
 ```db.locations.save({name: 'Baker\'s', address: '21 Down Street', rating: 4, facilities: ['Hot drinks', 'Food'], coords: [-0.8992033, 51.4379902], openingTimes: [{days: 'Monday - Friday', opening: '9:00am', closing: '11:00pm', closed: false},{ days: 'Saturday', opening: '8:00am', closing: '7:00pm', closed: false}, {days: 'Sunday', closed: true}]})```
 
-To add new review 
+To add new review
 
 ```db.locations.update({name: 'Timespace'}, {$push: { reviews: { author: 'Jack Rassel', _id: ObjectId(), rating: 5, timestamp: new Date("Jul 15, 2018"), reviewText: "What a great place. I can't say enough good things about it."}}})```
 
@@ -34,14 +34,6 @@ To remove a review
 To remove all author's reviews
 
 ```db.locations.update({name: "Timespace"}, {$pull: {reviews: {author: "Jack Rassel"}}}, {multi: true})```
-
-#### Heroku config
-
-Firstly `heroku login`
-
-Then `heroku config:set MONGOLAB_URI=mongodb://<user>:<password>@ds161520.mlab.com:61520/loc8r-db```
-
-To get that URI use ```heroku config:get MONGOLAB_URI`
 
 ##### DB dump
 
@@ -55,7 +47,16 @@ To connect to remote db use `mongo ds161520.mlab.com:61520/loc8r-db -u <username
 
 Set different dbs for dev and prod using NODE_ENV `heroku config:set NODE_ENV=production` and check of it's ok `heroku config:get NODE_ENV`
 
+#### Heroku config
+
+Firstly `heroku login`
+
+Then `heroku config:set MONGOLAB_URI=mongodb://<user>:<password>@ds161520.mlab.com:61520/loc8r-db```
+
+To get that URI use ```heroku config:get MONGOLAB_URI`
+
 ## Todos
 
 - [ ] In models/location change time format from String to Number of seconds from midnight
+
 - [ ] In locations.js get maxDistance from address (book page 236)
