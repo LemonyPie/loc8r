@@ -6,6 +6,10 @@ Getting MEAN project "loc8r"
 
 ## Misc
 
+### Typical requests
+
+Get locations list by distance: `localhost:5000/api/locations?lng=30.359404&lat=59.946483&maxDistance=1200`
+
 ### Commands
 
 #### Mongo Shell
@@ -15,12 +19,21 @@ To start mongodb execute
 * Linux: `sudo mongod --fork --dbpath /var/lib/mongodb  --logpath /var/lib/mongodb/mongodb.log`
 * MacOS: `sudo mongod --fork --dbpath /usr/local/var/mongodb --logpath /usr/local/var/log/mongodb/mongo.log`
 
-To manually insert new document of place `db.locations.save({name: 'Baker\'s', address: '21 Down Street', rating: 4, facilities: ['Hot drinks', 'Food'], coords: [-0.8992033, 51.4379902], openingTimes: [{days: 'Monday - Friday', opening: '9:00am', closing: '11:00pm', closed: false},{ days: 'Saturday', opening: '8:00am', closing: '7:00pm', closed: false}, {days: 'Sunday', closed: true}]})`
+To manually insert new document of place
 
-To add new review `db.locations.update({name: 'Timespace'}, {$push: { reviews: { author: 'Jack Rassel', _id: ObjectId(), rating: 5, timestamp: new Date("Jul 15, 2018"), reviewText: "What a great place. I can't say enough good things about it."}}})`
+```db.locations.save({name: 'Baker\'s', address: '21 Down Street', rating: 4, facilities: ['Hot drinks', 'Food'], coords: [-0.8992033, 51.4379902], openingTimes: [{days: 'Monday - Friday', opening: '9:00am', closing: '11:00pm', closed: false},{ days: 'Saturday', opening: '8:00am', closing: '7:00pm', closed: false}, {days: 'Sunday', closed: true}]})```
 
-To remove a review `db.locations.update({name: "Timespace"}, {$pull: {reviews: {_id: ObjectId("5b2c92ed6ec02f4f7d1a9212")}}})`
-To remove all author's reviews `db.locations.update({name: "Timespace"}, {$pull: {reviews: {author: "Jack Rassel"}}}, {multi: true})`
+To add new review 
+
+```db.locations.update({name: 'Timespace'}, {$push: { reviews: { author: 'Jack Rassel', _id: ObjectId(), rating: 5, timestamp: new Date("Jul 15, 2018"), reviewText: "What a great place. I can't say enough good things about it."}}})```
+
+To remove a review
+
+```db.locations.update({name: "Timespace"}, {$pull: {reviews: {_id: ObjectId("5b2c92ed6ec02f4f7d1a9212")}}})```
+
+To remove all author's reviews
+
+```db.locations.update({name: "Timespace"}, {$pull: {reviews: {author: "Jack Rassel"}}}, {multi: true})```
 
 #### Heroku config
 
