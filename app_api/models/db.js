@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 let dbURI = 'mongodb://localhost/loc8r-db';
 if(process.env.NODE_ENV === 'production'){
-  dbURI = process.env.MONGOLAB_URI;
+  dbURI = process.env.ATLAS_URI//MONGOLAB_URI;
 }
 
 mongoose.connect(dbURI);
