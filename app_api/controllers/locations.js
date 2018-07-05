@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 const Loc = mongoose.model('Location');
 
-const _buildLocationList = function(req, res, results, stats) {
+const _buildLocationList = function(results) {
   let locations = [];
   results.forEach((doc) => {
     locations.push({
       distance: doc.dis,
-      name: doc.obj.name,
-      address: doc.obj.address,
-      rating: doc.obj.rating,
-      facilities: doc.obj.facilities,
-      _id: doc.obj._id
+      name: doc.name,
+      address: doc.address,
+      rating: doc.rating,
+      facilities: doc.facilities,
+      _id: doc._id
     });
   });
   return locations;
@@ -47,7 +47,8 @@ const locationsListByDistance = function(req, res){
       distanceField: "coords"
     })
     .then((locations)=>{
-      sendJsonResponse(res, 200, locations);
+      let result = _buildLocationList(locations);
+      sendJsonResponse(res, 200, result);
     })
     .catch((err)=>{console.log(err);})
 }
