@@ -34,6 +34,12 @@ const locationsListByDistance = function(req, res){
     maxDistance: maxDistance,
     num: 10
   }
+  if(!lng || !lat){
+    sendJsonResponse(res, 404, {
+      "message": "lng and lat query parameters are required"
+    });
+    return;
+  }
   Loc
     .aggregate()
     .near({
@@ -47,10 +53,12 @@ const locationsListByDistance = function(req, res){
       distanceField: "coords"
     })
     .then((locations)=>{
-      let result = _buildLocationList(locations);
-      sendJsonResponse(res, 200, result);
+        let result = _buildLocationList(locations);
+        sendJsonResponse(res, 200, result);
     })
-    .catch((err)=>{console.log(err);})
+    .catch((err)=>{
+      sendJsonResponse(res, 404, err);
+    })
 }
 const locationsCreate = function(req, res){
   sendJsonResponse(res, 200, { "status" : "success" });
