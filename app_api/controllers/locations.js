@@ -61,6 +61,13 @@ const locationsListByDistance = function(req, res){
     })
 }
 const locationsCreate = function(req, res){
+  let bodyData = req.body;
+  Loc.create({
+    name: bodyData.name,
+    address: bodyData.address,
+    facilities: bodyData.facilities.split(/,\s/),
+    //coords:   ;
+  })
   sendJsonResponse(res, 200, { "status" : "success" });
 }
 const locationsReadOne = function(req, res){
